@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+#menu {
+	list-style:none;
+	margin: 0;
+	padding: .5rem 0;
+	overflow: hidden;
+}
+
+#menu > li {
+	float: left;
+	padding: 0 1rem;
+	border-right: 1px solid #CCC;
+}
+
+#menu > li:first-child{
+	padding: 0 1rem 0 0;
+}
+
+#menu > li:last-child{
+	padding: 0 0 0 1rem;
+	border-right: none;
+}
