@@ -1,9 +1,16 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 
-/* GET home page. */
+var quizController = require('../controllers/quiz_controller.js');
+
+/* GET home page */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Quiz' });
 });
+
+/* Quiz APP */
+router.get('/quizes/question',	quizController.question);
+router.get('/quizes/answer',	quizController.answer);
 
 module.exports = router;
