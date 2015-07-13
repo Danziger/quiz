@@ -16,3 +16,10 @@ nav span             { margin: 0px 10px 0px 0px;
 .right 				 {float: right;}
 
 .quiz_img 			 { height: 150px; float: left;}
+
+#dani {
+	position: relative;
+	height: 200px;
+	border-radius: 100%;
+	margin: 0 auto;
+}
