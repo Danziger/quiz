@@ -27,13 +27,13 @@ var Question = sequelize.import(path.join(__dirname, "quiz"));
 
 exports.Question = Question;
 
-sequelize.sync().success(function() {
-	Question.count().success(function(count) {
+sequelize.sync().then(function() {
+	Question.count().then(function(count) {
 		if(count === 0) {
 			Question.create({
 				question: "¿Capital de Italia?",
 				response: "^\\s*roma\\s*$"
-			}).success(function() {
+			}).then(function() {
 				console.log("DB successfully initialized!");
 			});
 		}
