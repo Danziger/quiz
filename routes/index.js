@@ -10,8 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 /* Quiz APP */
-router.get('/quizes/question',	quizController.question);
-router.get('/quizes/answer',	quizController.answer);
+router.get('/quizes',						quizController.index);
+router.get('/quizes/:quizId(\\d+)',			quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
 /* GET author */
 router.get('/author', function(req, res, next) {

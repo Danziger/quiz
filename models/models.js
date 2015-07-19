@@ -32,7 +32,11 @@ sequelize.sync().then(function() {
 		if(count === 0) {
 			Question.create({
 				question: "¿Capital de Italia?",
-				response: "^\\s*roma\\s*$"
+				response: "^\\s*Roma\\s*$"
+			});
+			Question.create({
+				question: "¿Capital de Portugal?",
+				response: "^\\s*Lisboa\\s*$"
 			}).then(function() {
 				console.log("DB successfully initialized!");
 			});

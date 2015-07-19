@@ -1,0 +1,5 @@
+<table>
+<% for(var i = 0, L = questions.length; i < L; ++i) { %>
+	<tr><td><a href="quizes/<%= questions[i].id %>"><%= questions[i].question %></a></td></tr>
+<% } %>
+</table>
