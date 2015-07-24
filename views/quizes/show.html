@@ -1,0 +1,13 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<h2>PREGUNTA #{{question.id}}</h2>
+
+<form method="get" action="/quizes/{{ question.id }}/answer" class="card">
+	<h3><label for="in-{{ question.id }}">{{ question.question }}</label></h3>
+	<input autofocus class="response" id="in-{{ question.id }}" type="text" name="respuesta" autocomplete="off"/>
+	<input id="submit" type="submit" value="ENVIAR"/>
+</form>
+
+{% endblock %}

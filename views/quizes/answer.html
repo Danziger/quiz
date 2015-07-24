@@ -1,0 +1,25 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<!--<h2>{{ response }}</h2>
+<p><a href="/quizes/{{ question.id }}">Inténtelo otra vez</a></p>-->
+
+<h2>PREGUNTA #{{question.id}}</h2>
+
+<div class="card {{state}}">
+	<h3>{{ question.question }}</h3>
+	<div class="response">{{ response }}</div>
+	
+	{% if state === "ok" %}
+		<a id="submit" href="/quizes/{{parseInt(question.id) + 1}}" autofocus>SIGUIENTE</a>
+	{% else %}
+		<a id="submit" href="/quizes/{{question.id}}" autofocus>VOLVER A INTENTAR</a>
+	{% endif %}
+	
+	<script>
+		document.getElementById("submit").focus();
+	</script>
+</div>
+
+{% endblock %}

@@ -23,12 +23,11 @@ exports.index = function(req, res, next) {
 	var search = req.query.search;
 	
 	if(search) {
-		search = "%" + search.replace(/\s/g, "%") + "%";
-		query = {where: ["question like ?", search]};
+		query = {where: ["question like ?", "%" + search.replace(/\s/g, "%") + "%"]};
 	}
 
 	models.Question.findAll(query).then(function(questions) {
-		res.render('quizes/index.ejs', {title: 'Quiz', questions: questions});
+		res.render('quizes/index', {title: 'Quiz', questions: questions, search: search || ""});
 	}).catch(function(err){
 		next(err);
 	});
@@ -41,10 +40,7 @@ exports.show = function(req, res) {
 
 // GET /quizes/:quizId(\\d+)/answer
 exports.answer = function(req, res) {
-	if(req.query.respuesta.match(new RegExp(req.question.response, "i")))
-		var response = '¡Correcto! :)';
-	else 
-		var response = '¡Incorrecto! :(';
-	
-	res.render('quizes/answer', {title: 'Quiz', question: req.question, response: response});
+	var response = req.query.respuesta;
+	var state = response.match(new RegExp(req.question.response, "i")) ? "ok" : "wrong";
+	res.render('quizes/answer', {title: 'Quiz', question: req.question, response: response, state: state});
 };

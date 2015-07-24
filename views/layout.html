@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<meta charset="utf-8"/>
+		<link rel='stylesheet' href='/stylesheets/style.css' />		
+		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	</head>
+	<body>
+		<section id="wrapper">
+			<header id="header">
+				<h1>{{ title }}<span>: el juego de las preguntas</span></h1>
+				
+				<nav id="actionbar" role="navigation">
+					<div id="search-menu-button"></div>
+					
+					<ul id="menu" class="menu">
+						<li><a href="/"><span>Inicio</span></a></li>
+						<li><a href="/quizes"><span>Preguntas</span></a></li>
+						<li><a href="/author"><span>Créditos</span></a></li>
+					</ul>
+					
+					<form id="search-form" method="get" action="quizes">
+						<input id="search-input" type="text" name="search" placeholder="¿QUÉ ESTÁS BUSCANDO?" value="{{search}}" {% if search !== "" %} autofocus{%endif%}/>
+						<input id="search-submit" type="submit" value="BUSCAR" />
+					</form>
+				</nav>
+			</header>
+
+			{% block body %}{% endblock %}
+		</section>
+		
+		<footer id="footer">
+			<ul class="menu">
+				<li><a href="https://es.wikipedia.org/wiki/Quiz"><span>¿Qué es un Quiz?</span></a></li>
+				<li><a href="https://github.com/Danziger/quiz"><span>Quiz en GitHub</span></a></li>
+			</ul>
+		</footer>
+	</body>
+</html>

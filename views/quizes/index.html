@@ -1,0 +1,17 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<h2>PREGUNTAS</h2>
+
+{% if questions.length > 0 %}
+	<ul class="no-list">
+	{% for q in questions %}
+		<li><a href="quizes/{{ q.id }}" class="big link">{{ q.question }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No hay resultados que para «<code id="search-query">{{search}}</code>»</p>
+{% endif %}
+
+{% endblock %}
