@@ -352,7 +352,36 @@ label{
 	box-shadow: rgba(0, 0, 0, 0.14902) 0px 0.75rem 6rem 0px, rgba(0, 0, 0, 0.247059) 0px 0.5rem 1rem -0.25rem;
 }
 
+/*
+section > div        { padding: 20px; }
+header, nav, section { text-align: center;}
+footer               { text-align: center;}
+nav span             { margin: 0px 10px 0px 0px;
+  					   width: 100%;
+  					   display: inline-block;}
+
+#ErrorMsgs           { color: #f61; font-size: smaler}
+.right 				 {float: right;}
+
+.quiz_img 			 { height: 150px; float: left;}
+
+#dani {
+	position: relative;
+	height: 200px;
+	border-radius: 100%;
+	margin: 0 auto;
+}
+*/
+
 @media only screen and (max-width: 850px) /* WIDTH < 850px*/ {
+/*
+	#page-wrap:after { content: "Wide Layout"; }
+
+	nav       { float: left; width: 15%; height: 400px ;}
+	nav span  { margin: 0px 100px 0px 0px;}
+	section   { float: right; width: 80%; height: 400px ;}
+	footer    { clear: both;  display: block; }
+*/
 	#search-input {
 		width: 100%;
 	}
