@@ -23,7 +23,10 @@ exports.index = function(req, res, next) {
 	var search = req.query.search;
 	
 	if(search) {
-		query = {where: ["question like ?", "%" + search.replace(/\s/g, "%") + "%"]};
+		query = {
+			where: ["LOWER(question) like LOWER(?)", "%" + search.replace(/\s/g, "%") + "%"],
+			order: "question ASC"
+		};
 	}
 
 	models.Question.findAll(query).then(function(questions) {
