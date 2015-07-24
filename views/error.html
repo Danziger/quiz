@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>{{ message }}</h2>
+<h3>{{ error.status }}</h3>
+<pre id="codeblock">{{ error.stack }}</pre>
+<p><a href="/" class="big link">Volver a la página inicial</a></p>
+
+{% endblock %}
