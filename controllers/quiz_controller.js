@@ -47,3 +47,23 @@ exports.answer = function(req, res) {
 	var state = response.match(new RegExp(req.question.response, "i")) ? "ok" : "wrong";
 	res.render('quizes/answer', {title: 'Quiz', question: req.question, response: response, state: state});
 };
+
+// CREATION: ///////////////////////////////////////////////////////////////////
+
+// GET /quizes/create
+exports.renderCreate = function(req ,res) {
+	res.render('quizes/create', {
+		title: 'Quiz',
+		question: models.Question.build({ question: "", response: "" })
+	});
+}
+
+// POST /quizes/create
+exports.create = function(req ,res) {
+	req.body.question.response = "^\\s*" + req.body.question.response.replace(/\s/g,"\\s+") + "\\s*$";
+	var question = models.Question.build( req.body.question );
+	
+	question.save({fields: ["question", "response"]}).then(function() {
+		res.redirect("/quizes");
+	});
+}

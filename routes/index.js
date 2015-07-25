@@ -17,6 +17,16 @@ router.get('/quizes',						quizController.index);
 router.get('/quizes/:quizId(\\d+)',			quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
+// CREATION: ///////////////////////////////////////////////////////////////////
+
+// GET /quizes/create
+router.get('/quizes/create',	quizController.renderCreate);
+
+// POST /quizes/create
+router.post('/quizes/create',	quizController.create);
+
+// MISC. ///////////////////////////////////////////////////////////////////////
+
 /* GET author */
 router.get('/author', function(req, res, next) {
   res.render('author', { title: 'Quiz', author: 'Dani Gámez Franco'});

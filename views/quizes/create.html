@@ -1,0 +1,15 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<h2>CREAR PREGUNTA</h2>
+
+<form method="post" action="/quizes/create" class="card">
+
+	{% include "form.html" with question only %}
+
+	<input id="submit" type="submit" value="CREAR"/>
+	
+</form>
+
+{% endblock %}
