@@ -4,10 +4,22 @@
 
 <h2>CREAR PREGUNTA</h2>
 
-<form method="post" action="/quizes/create" class="card">
+<form method="post" action="/quizes/create" class="card {% if errors %}wrong{% endif %}">
 
 	{% include "form.html" with question only %}
 
+	{% if errors %}
+	
+		<h3>ERRORES</h3>
+	
+		<ul>
+		{% for error in errors %}
+			<li>{{error.message}}</li>
+		{% endfor %}
+		</ul>
+	
+	{% endif %}
+	
 	<input id="submit" type="submit" value="CREAR"/>
 	
 </form>

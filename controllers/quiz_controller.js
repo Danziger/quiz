@@ -56,14 +56,21 @@ exports.renderCreate = function(req ,res) {
 		title: 'Quiz',
 		question: models.Question.build({ question: "", response: "" })
 	});
-}
+};
 
 // POST /quizes/create
 exports.create = function(req ,res) {
-	req.body.question.response = "^\\s*" + req.body.question.response.replace(/\s/g,"\\s+") + "\\s*$";
 	var question = models.Question.build( req.body.question );
 	
-	question.save({fields: ["question", "response"]}).then(function() {
-		res.redirect("/quizes");
+	question.validate().then(function(err) {
+		if(err) {
+			res.render("quizes/create", {title: 'Quiz', question: question, errors: err.errors});
+		}
+		else {
+			question.reponse = "^\\s*" + question.reponse.replace(/\s/g,"\\s+") + "\\s*$";
+			question.save({fields: ["question", "response"]}).then(function() {
+				res.redirect("/quizes");
+			});
+		}
 	});
-}
+};

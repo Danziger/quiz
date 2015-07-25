@@ -23,7 +23,7 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
 	omitNull: true // for Postgres only
 });
 
-var Question = sequelize.import(path.join(__dirname, "quiz"));
+var Question = sequelize.import(path.join(__dirname, "question"));
 
 exports.Question = Question;
 

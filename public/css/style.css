@@ -22,7 +22,7 @@ body {
 #wrapper {
 	position: relative;
 	min-height: 100%;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	margin: 0 1rem;
 	flex: 1;
 	max-width: 1200px;
@@ -46,6 +46,10 @@ p, .no-list > li {
 }
 
 /* HEADER TITLE */
+
+h1, h2, h3 {
+	overflow: hidden;
+}
 
 h1 {
 	font-size: 4rem;
