@@ -32,13 +32,13 @@ sequelize.sync().then(function() {
 		if(count === 0) {
 			Question.create({
 				question: "¿Capital de Italia?",
-				indexedquestion: "¿capital de italia?",
+				indexedQuestion: "¿capital de italia?",
 				response: "Roma",
 				responseRegExp: "^\\s*Roma\\s*$"
 			});
 			Question.create({
 				question: "¿Capital de Portugal?",
-				indexedquestion: "¿capital de portugal?",
+				indexedQuestion: "¿capital de portugal?",
 				response: "Lisboa",
 				responseRegExp: "^\\s*Lisboa\\s*$"
 			}).then(function() {
