@@ -49,7 +49,7 @@ p {
 .no-list > li {
 	position: relative;
 	padding: .5rem 0;
-	overflow:hidden;
+	/*overflow:hidden;*/
 }
 
 .submenu {
@@ -61,7 +61,6 @@ p {
 	float: left;
 	margin: 0 0 0 .5625rem;
 	box-shadow: -.25rem 0 0 0 #FFF, -.3125rem 0 0 0 #000;
-	
 	line-height: 2rem;
 }
 
@@ -70,17 +69,74 @@ p {
 	box-shadow: none;
 }
 
-.submenu > li:hover {
+.submenu > li > a, .submenu > li > span {
+	display: block;
+	padding: 0 .5rem;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.submenu > li:hover > a, .submenu > li:hover > span{
 	background: #FF0;
 }
 
-.submenu > li > a {
-	display: block;
-	padding: 0 .5rem;
+.submenu > li.delete:hover > a, .submenu > li.delete:hover > span{
+	background: #F00;
+	color: #FFF;
 }
 
 .submenu-icon {
 	display: none;
+}
+
+#delete-confirm {
+	position: absolute;
+	top: 0;
+	right: -.5rem;
+	height: 2rem;
+	background: #FFF;
+	padding: .5rem;
+
+	display: none;
+	
+	box-shadow: rgba(0, 0, 0, 0.14902) 0px 0.75rem 6rem 0px, rgba(0, 0, 0, 0.247059) 0px 0.5rem 1rem -0.25rem;
+	border-radius: 2px;
+	
+	z-index: 900;
+}
+
+#delete-confirm.visible {
+	display: inline-block;
+}
+
+#delete-confirm > input {
+	font-size: 1rem;
+	font-family: "Century Gothic", Sans-Serif;
+	margin: 0 .5rem 0 0;
+	height: 2rem;
+	border: none;
+	background: #FFF;
+	cursor: pointer;
+	color: #F00;
+	font-weight: bold;
+	border-radius: 2px;
+	padding: 0 .5rem;
+	outline: none;
+}
+
+#delete-confirm > input:first-child:hover{
+	background: #F00;
+	color: #FFF;
+}
+
+#delete-confirm > input:last-child{
+	color: #CCC;
+	margin: 0;
+}
+
+#delete-confirm > input:last-child:hover{
+	background: #EEE;
+	color: #CCC;
 }
 
 /* HEADER TITLE */
@@ -195,6 +251,8 @@ h3.small {
 	flex: 1;
 	
 	background: #FFF;
+	
+	z-index: 998;
 }
 
 #search-menu-button {
@@ -443,8 +501,9 @@ label{
 		padding: 0;
 	}
 
-	.submenu > li > a {
+	.submenu > li > a, .submenu > li > span {
 		border:none;
+		border-radius: 0;
 	}
 	
 	.submenu-icon {
@@ -530,7 +589,7 @@ label{
 
 	#menu.visible {
 		position: absolute;
-		z-index: 999;
+		z-index: 997;
 		top: 3rem;
 		left: .5rem;
 		float: none;

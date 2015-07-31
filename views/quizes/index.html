@@ -16,7 +16,7 @@
 		
 			<ul class="no-list submenu">
 				<li><a href="/quizes/{{ q.id }}/edit">EDITAR</a></li>
-				<li><a href="/quizes/{{ q.id }}/delete">ELIMINAR</a></li>
+				<li class="delete" data-id="{{ q.id }}"><span>ELIMINAR</span></li>
 			</ul>
 		</li>
 	{% endfor %}

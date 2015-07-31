@@ -161,3 +161,13 @@ exports.update = function(req, res) {
 		}
 	});
 };
+
+// DELETION: ///////////////////////////////////////////////////////////////////
+
+exports.delete = function(req, res) {
+	req.question.destroy().then(function() {
+		res.redirect("/quizes");
+	}).catch(function(err) {
+		next(err);
+	});
+};
