@@ -27,13 +27,13 @@ exports.index = function(req, res, next) {
 		search = filterAlphabet(search).toLowerCase();
 	
 		query = {
-			where: ["indexedQuestion like ?", "%" + search.replace(/\s+/g, "%") + "%"],
-			order: "indexedQuestion ASC" // This will guarantee same order independently of capital letters
+			where: ['"indexedQuestion" like ?', "%" + search.replace(/\s+/g, "%") + "%"],
+			order: '"indexedQuestion" ASC' // This will guarantee same order independently of capital letters
 		};
 	}
 	else {
 		query = {
-			order: "indexedQuestion ASC"
+			order: '"indexedQuestion" ASC"'
 		};
 	}
 
