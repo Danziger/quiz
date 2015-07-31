@@ -27,13 +27,13 @@ exports.index = function(req, res, next) {
 		search = filterAlphabet(search).toLowerCase();
 	
 		query = {
-			where: ["indexedQuestion like ?", "%" + search.replace(/\s+/g, "%") + "%"],
-			order: "indexedQuestion ASC" // This will guarantee same order independently of capital letters
+			where: ["indexedquestion like ?", "%" + search.replace(/\s+/g, "%") + "%"],
+			order: "indexedquestion ASC" // This will guarantee same order independently of capital letters
 		};
 	}
 	else {
 		query = {
-			order: "indexedQuestion ASC"
+			order: "indexedquestion ASC"
 		};
 	}
 
@@ -108,9 +108,9 @@ exports.create = function(req ,res) {
 			// TO-DO: Botón cancelar = enlace a la lista de preguntas!
 			// TO-DO: Remove first question tag for sorting...
 		
-			question.indexedQuestion = filterAlphabet(question.question).toLowerCase();
+			question.indexedquestion = filterAlphabet(question.question).toLowerCase();
 			question.responseRegExp = "^\\s*" + filterAlphabet(question.response).replace(/\s/g,"\\s+") + "\\s*$";
-			question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp"]}).then(function() {
+			question.save({fields: ["question", "indexedquestion", "response", "responseRegExp"]}).then(function() {
 				res.redirect("/quizes");
 			});
 		}
@@ -153,9 +153,9 @@ exports.update = function(req, res) {
 			// TO-DO: Escapar otros carácteres que puedan dar conflictos...
 			// TO-DO: Botón cancelar = enlace a la lista de preguntas!
 		
-			req.question.indexedQuestion = filterAlphabet(req.question.question).toLowerCase();
+			req.question.indexedquestion = filterAlphabet(req.question.question).toLowerCase();
 			req.question.responseRegExp = "^\\s*" + filterAlphabet(req.question.response).replace(/\s/g,"\\s+") + "\\s*$";
-			req.question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp"]}).then(function() {
+			req.question.save({fields: ["question", "indexedquestion", "response", "responseRegExp"]}).then(function() {
 				res.redirect("/quizes");
 			});
 		}

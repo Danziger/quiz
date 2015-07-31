@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			defaultValue: ""
 		},
-		indexedQuestion: {
+		indexedquestion: {
 			type: DataTypes.STRING,
 			defaultValue: ""
 		},
