@@ -6,12 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var partials  = require('express-partials');
 var swig = require("swig"); // Use Swig instead of EJS
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 
 var app = express();
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +31,9 @@ swig.setDefaults({ cache: false });
 //app.use(partials());
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded()); // extended = true by default
 app.use(cookieParser());

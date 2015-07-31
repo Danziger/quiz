@@ -1,0 +1,27 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<h2>EDITR PREGUNTA #{{ question.id }}</h2>
+
+<form method="post" action="/quizes/{{ question.id }}?_method=PUT" class="card {% if errors %}wrong{% endif %}">
+
+	{% include "form.html" with question only %}
+
+	{% if errors %}
+	
+		<h3>ERRORES</h3>
+	
+		<ul>
+		{% for error in errors %}
+			<li>{{error.message}}</li>
+		{% endfor %}
+		</ul>
+	
+	{% endif %}
+	
+	<input id="submit" type="submit" value="EDITAR"/>
+	
+</form>
+
+{% endblock %}

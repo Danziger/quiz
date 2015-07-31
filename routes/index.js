@@ -17,6 +17,8 @@ router.get('/quizes',						quizController.index);
 router.get('/quizes/:quizId(\\d+)',			quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
+
+
 // CREATION: ///////////////////////////////////////////////////////////////////
 
 // GET /quizes/create
@@ -24,6 +26,18 @@ router.get('/quizes/create',	quizController.renderCreate);
 
 // POST /quizes/create
 router.post('/quizes/create',	quizController.create);
+
+
+
+// EDITION: ////////////////////////////////////////////////////////////////////
+
+// GET /quizes/:quizId(\\d+)/edit
+router.get('/quizes/:quizId(\\d+)/edit',	quizController.edit);
+
+// POST -> PUT /quizes/:quizId(\\d+)/edit
+router.put('/quizes/:quizId(\\d+)',			quizController.update);
+
+
 
 // MISC. ///////////////////////////////////////////////////////////////////////
 

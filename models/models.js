@@ -32,14 +32,20 @@ sequelize.sync().then(function() {
 		if(count === 0) {
 			Question.create({
 				question: "¿Capital de Italia?",
-				response: "^\\s*Roma\\s*$"
+				indexedQuestion: "¿capital de italia?",
+				response: "Roma",
+				responseRegExp: "^\\s*Roma\\s*$"
 			});
 			Question.create({
 				question: "¿Capital de Portugal?",
-				response: "^\\s*Lisboa\\s*$"
+				indexedQuestion: "¿capital de portugal?",
+				response: "Lisboa",
+				responseRegExp: "^\\s*Lisboa\\s*$"
 			}).then(function() {
 				console.log("DB successfully initialized!");
 			});
 		}
 	});
 });
+
+// TO-DO: Add perfect reponse! Sustituir por ella cuando acertamos aproximado!

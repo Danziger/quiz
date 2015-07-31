@@ -4,16 +4,25 @@
 
 <h2>PREGUNTAS</h2>
 
-{% if questions.length > 0 %}
+<p><a href="/quizes/create" class="big link">Crear una nueva pregunta</a></p>
+
+{% if questions.length > 0 %}	
 	<ul class="no-list">
 	{% for q in questions %}
-		<li><a href="/quizes/{{ q.id }}" class="big link">{{ q.question }}</a></li>
+		<li>
+			<a href="/quizes/{{ q.id }}" class="big link">{{ q.question }}</a>
+		
+			<span class="submenu-icon"></span>
+		
+			<ul class="no-list submenu">
+				<li><a href="/quizes/{{ q.id }}/edit">EDITAR</a></li>
+				<li><a href="/quizes/{{ q.id }}/delete">ELIMINAR</a></li>
+			</ul>
+		</li>
 	{% endfor %}
 	</ul>
 {% else %}
 	<p>No hay resultados que para «<code id="search-query">{{search}}</code>»</p>
 {% endif %}
-
-<p><a href="/quizes/create" class="big link">Crear una nueva pregunta</a></p>
 
 {% endblock %}
