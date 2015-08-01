@@ -14,8 +14,6 @@ router.param('quizId',						quizController.load);
 router.param('category',					quizController.validate);
 
 
-
-
 // CREATION: ///////////////////////////////////////////////////////////////////
 
 // GET /quizes/create
