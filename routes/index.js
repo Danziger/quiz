@@ -10,12 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 // Autoload :quizId
-router.param('quizId', quizController.load);
+router.param('quizId',						quizController.load);
+router.param('category',					quizController.validate);
 
-/* Quiz APP */
-router.get('/quizes',						quizController.index);
-router.get('/quizes/:quizId(\\d+)',			quizController.show);
-router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
 
 
@@ -43,6 +40,16 @@ router.put('/quizes/:quizId(\\d+)',			quizController.update);
 
 // POST -> DELETE /quizes/:quizId(\\d+)
 router.delete('/quizes/:quizId(\\d+)',		quizController.delete);
+
+
+
+
+/* Quiz APP */
+router.get('/quizes',						quizController.index);
+router.get('/quizes/:category',				quizController.index);
+router.get('/quizes/:quizId(\\d+)',			quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
+
 
 
 

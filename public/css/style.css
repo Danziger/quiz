@@ -54,6 +54,8 @@ p {
 
 .submenu {
 	float: right;
+	overflow:hidden;
+	/* http://stackoverflow.com/questions/5736503/how-to-make-css3-rounded-corners-hide-overflow-in-chrome-opera */
 }
 
 .submenu > li {

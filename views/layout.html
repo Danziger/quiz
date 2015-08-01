@@ -22,7 +22,7 @@
 						<li><a href="/author"><span>Créditos</span></a></li>
 					</ul>
 					
-					<form id="search-form" method="get" action="quizes">
+					<form id="search-form" method="get" action="/quizes{% if category %}/{{category}}{% endif %}">
 						<input id="search-input" type="text" name="search" placeholder="¿QUÉ ESTÁS BUSCANDO?" value="{{search}}" {% if search !== "" %} autofocus{%endif%}/>
 						<input id="search-submit" type="submit" value="BUSCAR" />
 					</form>

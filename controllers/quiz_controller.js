@@ -16,29 +16,59 @@ exports.load = function(req, res, next, quizId) {
 	});
 };
 
+exports.validate = function(req, res, next, category) {
+
+	if(models.Question.rawAttributes.category.values.indexOf(category) === -1) {
+		next(new Error("No category = " + category));
+	}
+	else {
+		req.category = category;
+		next();
+	}
+};
+
 // GET /quizes
 exports.index = function(req, res, next) {
 
 	var query = {};
 	var search = (req.query.search || "").trim().replace(/\s+/g, " ");
 	
-	if(search.length > 0) {	
-	
-		search = filterAlphabet(search).toLowerCase();
-	
-		query = {
-			where: ['"indexedQuestion" like ?', "%" + search.replace(/\s+/g, "%") + "%"],
-			order: '"indexedQuestion" ASC' // This will guarantee same order independently of capital letters
-		};
+	if(req.category) {
+		if(search.length > 0) {	
+		
+			search = filterAlphabet(search).toLowerCase();
+		
+			query = {
+				where: ['category = ? and "indexedQuestion" like ?', req.category, "%" + search.replace(/\s+/g, "%") + "%"],
+				order: '"indexedQuestion" ASC' // This will guarantee same order independently of capital letters
+			};
+		}
+		else {
+			query = {
+				where: ['category = ?', req.category],
+				order: '"indexedQuestion" ASC'
+			};
+		}
 	}
 	else {
-		query = {
-			order: '"indexedQuestion" ASC'
-		};
+		if(search.length > 0) {	
+		
+			search = filterAlphabet(search).toLowerCase();
+		
+			query = {
+				where: ['"indexedQuestion" like ?', "%" + search.replace(/\s+/g, "%") + "%"],
+				order: '"indexedQuestion" ASC' // This will guarantee same order independently of capital letters
+			};
+		}
+		else {
+			query = {
+				order: '"indexedQuestion" ASC'
+			};
+		}
 	}
 
 	models.Question.findAll(query).then(function(questions) {
-		res.render('quizes/index', {title: 'Quiz', questions: questions, search: search});
+		res.render('quizes/index', {title: 'Quiz', questions: questions, search: search, categories: models.Question.rawAttributes.category.values, category: req.category || ""});
 	}).catch(function(err){
 		next(err);
 	});
@@ -110,7 +140,7 @@ exports.create = function(req ,res) {
 		
 			question.indexedQuestion = filterAlphabet(question.question).toLowerCase();
 			question.responseRegExp = "^\\s*" + filterAlphabet(question.response).replace(/\s/g,"\\s+") + "\\s*$";
-			question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp"]}).then(function() {
+			question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp", "category"]}).then(function() {
 				res.redirect("/quizes");
 			});
 		}
@@ -136,6 +166,7 @@ exports.update = function(req, res) {
 
 	req.question.question = req.body.question.question;
 	req.question.response = req.body.question.response;
+	req.question.category = req.body.question.category;
 	
 	req.question.validate().then(function(err) {
 		if(err) {
@@ -155,7 +186,7 @@ exports.update = function(req, res) {
 		
 			req.question.indexedQuestion = filterAlphabet(req.question.question).toLowerCase();
 			req.question.responseRegExp = "^\\s*" + filterAlphabet(req.question.response).replace(/\s/g,"\\s+") + "\\s*$";
-			req.question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp"]}).then(function() {
+			req.question.save({fields: ["question", "indexedQuestion", "response", "responseRegExp", "category"]}).then(function() {
 				res.redirect("/quizes");
 			});
 		}
