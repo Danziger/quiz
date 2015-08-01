@@ -3,3 +3,13 @@
 
 <h3 class="small"><label for="new-response">RESPUESTA</label></h3>
 <input type="text" name="question[response]" id="new-response" value="{{ response }}" class="response" />
+
+<select name="question[category]">
+
+	{% for c in rawAttributes.category.values %}
+	
+		<option value="{{c}}" {% if c === category %}selected{% endif %}>{{c}}</option>
+	
+	{% endfor %}
+
+</select>

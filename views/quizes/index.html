@@ -6,11 +6,15 @@
 
 <p><a href="/quizes/create" class="big link">Crear una nueva pregunta</a></p>
 
+{% for c in categories %}
+	<a href="/quizes/{{c}}" class="link">{{c}}</a>
+{% endfor %}
+
 {% if questions.length > 0 %}	
 	<ul class="no-list">
 	{% for q in questions %}
 		<li>
-			<a href="/quizes/{{ q.id }}" class="big link">{{ q.question }}</a>
+			<a href="/quizes/{{ q.id }}" class="big link">{{ q.category }} | {{ q.question }}</a>
 		
 			<span class="submenu-icon"></span>
 		
@@ -22,7 +26,19 @@
 	{% endfor %}
 	</ul>
 {% else %}
-	<p>No hay resultados que para «<code id="search-query">{{search}}</code>»</p>
+	{% if category !== "" %}
+		{% if search !== "" %}
+			<p>No hay resultados que para «<code id="search-query">{{search}}</code>» en la categoría «<code id="search-query">{{category}}</code>».</p>
+		{% else %}
+			<p>No hay preguntas en la categoría «<code id="search-query">{{category}}</code>».</p>
+		{% endif %}
+	{% else %}
+		{% if search !== "" %}
+			<p>No hay resultados que para «<code id="search-query">{{search}}</code>».</p>
+		{% else %}
+			<p>No hay preguntas disponibles.</p>
+		{% endif %}
+	{% endif %}
 {% endif %}
 
 {% endblock %}
