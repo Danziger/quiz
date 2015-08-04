@@ -3,6 +3,7 @@ var path = require('path');
 var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller.js');
+var commentController = require('../controllers/comment_controller.js');
 
 /* GET home page */
 router.get('/', function(req, res, next) {
@@ -48,6 +49,11 @@ router.get('/quizes/:quizId(\\d+)',			quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 router.get('/quizes/:category',				quizController.index);
 
+
+
+// COMMENTS: ///////////////////////////////////////////////////////////////////
+
+router.post('/quizes/:quizId(\\d+)/comments',	commentController.add);
 
 
 

@@ -4,10 +4,22 @@
 
 <h2>PREGUNTA #{{question.id}}</h2>
 
-<form method="get" action="/quizes/{{ question.id }}/answer" class="card">
-	<h3><label for="in-{{ question.id }}">{{ question.question }}</label></h3>
-	<input autofocus class="response" id="in-{{ question.id }}" type="text" name="respuesta" autocomplete="off"/>
-	<input id="submit" type="submit" value="ENVIAR"/>
-</form>
+<div class="card">
+	<form method="get" action="/quizes/{{ question.id }}/answer">
+		<h3><label for="in-{{ question.id }}">{{ question.question }}</label></h3>
+		<input autofocus class="response" id="in-{{ question.id }}" type="text" name="respuesta" autocomplete="off"/>
+		<input id="submit" type="submit" value="ENVIAR"/>
+	</form>
+		
+	{% include "../comments/add.html" with question only %}
+		
+	<h4>COMENTARIOS</h4>
+
+	<ul class="nolist comments">
+		{% for comment in question.Comments %}
+			<li>{{ comment.text }}</li>
+		{% endfor %}
+	</ul>
+</div>
 
 {% endblock %}

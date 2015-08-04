@@ -3,8 +3,13 @@ var models = require("../models/models.js");
 // Autoload for routes that contain :quizId
 // DRY (Don't Repeat Yourself)
 exports.load = function(req, res, next, quizId) {
-	models.Question.find(quizId).then(function(question) {
+	models.Question.find({
+		where: { id: Number(quizId) },
+		include: [{ model: models.Comment }],
+		order: '"Comments.createdAt" DESC'
+	}).then(function(question) {
 		if(question) {
+			console.log(question);
 			req.question = question;
 			next();
 		}

@@ -24,8 +24,7 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
 });
 
 var Question = sequelize.import(path.join(__dirname, "question"));
-
-exports.Question = Question;
+var Comment = sequelize.import(path.join(__dirname, "comment"));
 
 sequelize.sync().then(function() {
 	Question.count().then(function(count) {
@@ -48,4 +47,10 @@ sequelize.sync().then(function() {
 	});
 });
 
-// TO-DO: Add perfect reponse! Sustituir por ella cuando acertamos aproximado!
+Comment.belongsTo(Question);
+Question.hasMany(Comment);
+
+exports.Question = Question;
+exports.Comment = Comment;
+
+// TO-DO: USE perfect reponse! Sustituir por ella cuando acertamos aproximado!
