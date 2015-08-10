@@ -43,7 +43,7 @@ app.use(process.env.DATABASE_STORAGE === "quiz.sqlite" ? {
 	resave: false,
 	saveUninitialized: true,
 	cookie: { secure: true }
-} : {}));
+} : {});
 
 // Dinamyc helpers:
 app.use(function(req, res, next) {
