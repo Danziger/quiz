@@ -1,0 +1,13 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+<table>
+	<tr><th>TOTAL QUESTIONS</th><td>{{statistics.totalQuestions}}</td></tr>
+	<tr><th>QUESTIONS WITH COMMENTS</th><td>{{statistics.questionsWithComments}}</td></tr>
+	<tr><th>QUESTIONS WITHOUT COMMENTS</th><td>{{statistics.questionsWithoutComments}}</td></tr>
+	<tr><th>TOTAL COMMENTS</th><td>{{statistics.totalComments}}</td></tr>
+	<tr><th>COMMENTS PER QUESTION</th><td>{{statistics.commentPerQuestion}}</td></tr>
+</table>
+
+{% endblock %}

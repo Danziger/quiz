@@ -67,6 +67,14 @@ router.delete('/quizes/:quizId(\\d+)',			sessionController.loginRequired,	quizCo
 
 
 
+// STATISTICS: /////////////////////////////////////////////////////////////////
+
+router.get('/quizes/statistics',				sessionController.loginRequired,	quizController.statistics);
+
+
+
+
+
 // PLAYING WITH QUESTIONS (APP ITSELF): ////////////////////////////////////////
 
 router.get('/quizes',							quizController.index);

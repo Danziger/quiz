@@ -207,3 +207,36 @@ exports.delete = function(req, res) {
 		next(err);
 	});
 };
+
+// STATISTICS: /////////////////////////////////////////////////////////////////
+
+var Sequelize = require("sequelize");
+
+exports.statistics = function(req, res, next) {
+
+	Sequelize.Promise.all([
+		models.Question.count(),
+		models.Comment.count(),
+		models.Comment.count({
+			group: ['id']
+		}),
+	]).then(function(results) {
+		var totalQuestions = results[0];
+		var totalComments = results[1];
+		var questionsWithComments = results[2];
+		
+		res.render('quizes/statistics', {
+			title: 'Quiz',
+			statistics: {
+				totalQuestions: totalQuestions,
+				totalComments: totalComments,
+				commentPerQuestion: (totalComments/totalQuestions).toFixed(2),
+				questionsWithComments: questionsWithComments,
+				questionsWithoutComments: totalQuestions - questionsWithComments
+			}
+		});
+
+	}).catch(function(err) {
+		next(err);
+	});
+};

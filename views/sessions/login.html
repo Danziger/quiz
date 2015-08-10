@@ -5,6 +5,7 @@
 	{% if session.user %}
 		<div>
 			<p>{{ session.user.username }}</p>
+			<a href="/quizes/statistics">STATISTICS</a>
 			<a href="/logout">LOG OUT</a>
 		</div>
 	{% else %}
