@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // extended = true by default
 app.use(cookieParser("this-is-the-seed-for-the-cookies"));
-app.use(session(app.get('env') === 'development' ? {
+app.use(process.env.DATABASE_STORAGE === "quiz.sqlite" ? {
 	secret: "this-is-the-seed-for-the-cookies",
 	resave: false,
 	saveUninitialized: true,
