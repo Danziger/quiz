@@ -26,9 +26,15 @@
 						<input id="search-input" type="text" name="search" placeholder="¿QUÉ ESTÁS BUSCANDO?" value="{{search}}" {% if search !== "" %} autofocus{%endif%}/>
 						<input id="search-submit" type="submit" value="BUSCAR" />
 					</form>
+					
+					<div id="login-menu-button"></div>
+
+					{% include "sessions/form.html" %}
 				</nav>
 			</header>
 
+			<!-- TO-DO: Aviso de cookies! -->
+			
 			{% block body %}{% endblock %}
 		</section>
 		

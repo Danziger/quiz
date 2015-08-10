@@ -1,0 +1,27 @@
+{% extends "../layout.html" %}
+
+{% block body %}
+
+	{% if session.user %}
+		<div>
+			<p>{{ session.user.username }}</p>
+			<a href="/logout">LOG OUT</a>
+		</div>
+	{% else %}
+		<form method="POST" action="/login">
+
+			<input type="text" name="login" value="{{username}}"/>
+			<input type="password" name="password"/>
+			
+			<input type="submit" name="commit" value="login"/>
+		
+			{% for err in errors %}
+			
+				{{ err.message }}		
+			
+			{% endfor %}
+			
+		</form>
+	{% endif %}
+
+{% endblock %}

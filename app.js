@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 //var partials  = require('express-partials');
 var swig = require("swig"); // Use Swig instead of EJS
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -36,8 +37,31 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded()); // extended = true by default
-app.use(cookieParser());
+app.use(cookieParser("this-is-the-seed-for-the-cookies"));
+app.use(session());
 
+// Dinamyc helpers:
+app.use(function(req, res, next) {
+	
+	console.log("USE");
+	console.log(req.path);
+	
+	// Save current path in session.redir to redirect user to it after login/logout:
+	if( !req.path.match(/\/login|\/logout/)) {
+		req.session.redir = req.path;
+	}
+	
+	// Expose req.session in the views:
+	// http://expressjs.com/api.html#res.locals:
+	// An object that contains response local variables scoped to the request,
+	// and therefore available only to the view(s) rendered during that request
+	// or response cycle (if any). Otherwise, this property is identical to app.locals.
+	res.locals.session = req.session;
+	
+	next(); // Go on...
+});
+
+// ROUTER: 
 app.use('/', routes);
 
 // catch 404 and forward to error handler
