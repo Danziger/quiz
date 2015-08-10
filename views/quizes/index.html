@@ -4,7 +4,9 @@
 
 <h2>PREGUNTAS</h2>
 
-<p><a href="/quizes/create" class="big link">Crear una nueva pregunta</a></p>
+{% if session.user %}
+	<p><a href="/quizes/create" class="big link">Crear una nueva pregunta</a></p>
+{% endif %}
 
 {% for c in categories %}
 	<a href="/quizes/{{c}}" class="link">{{c}}</a>
@@ -18,10 +20,13 @@
 		
 			<span class="submenu-icon"></span>
 		
-			<ul class="no-list submenu">
-				<li><a href="/quizes/{{ q.id }}/edit">EDITAR</a></li>
-				<li class="delete" data-id="{{ q.id }}"><span>ELIMINAR</span></li>
-			</ul>
+			{% if session.user %}
+				<ul class="no-list submenu">
+					<li><a href="/quizes/{{ q.id }}/edit">EDITAR</a></li>
+					<li class="delete" data-id="{{ q.id }}"><span>ELIMINAR</span></li>
+				</ul>
+			{% endif %}
+			
 		</li>
 	{% endfor %}
 	</ul>

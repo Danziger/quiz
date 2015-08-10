@@ -44,23 +44,23 @@ router.param('category',		quizController.validate);
 // QUESTION CREATION: //////////////////////////////////////////////////////////
 
 // GET /quizes/create
-router.get('/quizes/create',	quizController.renderCreate);
+router.get('/quizes/create',					sessionController.loginRequired,	quizController.renderCreate);
 
 // POST /quizes/create
-router.post('/quizes/create',	quizController.create);
+router.post('/quizes/create',					sessionController.loginRequired,	quizController.create);
 
 // QUESTION EDITION: ///////////////////////////////////////////////////////////
 
 // GET /quizes/:quizId(\\d+)/edit
-router.get('/quizes/:quizId(\\d+)/edit',		quizController.edit);
+router.get('/quizes/:quizId(\\d+)/edit',		sessionController.loginRequired,	quizController.edit);
 
 // POST -> PUT /quizes/:quizId(\\d+)
-router.put('/quizes/:quizId(\\d+)',				quizController.update);
+router.put('/quizes/:quizId(\\d+)',				sessionController.loginRequired,	quizController.update);
 
 // QUESTION DELETION: //////////////////////////////////////////////////////////
 
 // POST -> DELETE /quizes/:quizId(\\d+)
-router.delete('/quizes/:quizId(\\d+)',			quizController.delete);
+router.delete('/quizes/:quizId(\\d+)',			sessionController.loginRequired,	quizController.delete);
 
 
 
