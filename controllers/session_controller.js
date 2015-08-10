@@ -37,5 +37,6 @@ exports.login = function(req, res) {
 
 exports.logout = function(req, res) {
 	delete req.session.user; // No session.user = NOT LOGGED!
+	// TO-DO: req.session.regenerate(function(){...});
 	res.redirect(req.session.redir.toString());
 };

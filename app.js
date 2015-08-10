@@ -38,20 +38,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // extended = true by default
 app.use(cookieParser("this-is-the-seed-for-the-cookies"));
-app.use(session(/*{
+app.use(session(app.get('env') === 'development' ? {
 	secret: "this-is-the-seed-for-the-cookies",
 	resave: false,
 	saveUninitialized: true,
 	cookie: { secure: true }
-}*/));
+} : {}));
 
 // Dinamyc helpers:
 app.use(function(req, res, next) {
-
-	console.log(req.path);
+	
+	// TO-DO: rememberLastPage():
 	
 	// Save current path in session.redir to redirect user to it after login/logout:
-	if( !req.path.match(/\/login|\/logout/)) {
+	if( req.method === "GET" && !req.path.match(/\/login|\/logout/)) {
 		req.session.redir = req.path;
 	}
 	
@@ -61,9 +61,23 @@ app.use(function(req, res, next) {
 	// and therefore available only to the view(s) rendered during that request
 	// or response cycle (if any). Otherwise, this property is identical to app.locals.
 	res.locals.session = req.session;
+
+	// TO-DO: autoLogout():
+
+	var lastRequest = req.session.lastRequest;
 	
+	if(lastRequest && new Date().getTime() - lastRequest >= 120000) { // 2 minutes
+		delete req.session.user;
+	}
+
+	req.session.lastRequest = new Date().getTime();
 	next(); // Go on...
 });
+
+// app.locals (global to all views):
+app.locals = {
+	title: "Quiz"
+};
 
 // ROUTER: 
 app.use('/', routes);
