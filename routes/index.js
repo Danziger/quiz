@@ -35,6 +35,7 @@ router.get('/logout',			sessionController.logout);
 
 // AUTOLOAD STUFF: /////////////////////////////////////////////////////////////
 router.param('quizId',			quizController.load);
+router.param('commentId',		commentController.load);
 router.param('category',		quizController.validate);
 
 
@@ -79,7 +80,8 @@ router.get('/quizes/:category',					quizController.index);
 
 // COMMENTS: ///////////////////////////////////////////////////////////////////
 
-router.post('/quizes/:quizId(\\d+)/comments',	commentController.add);
+router.post('/quizes/:quizId(\\d+)/comments',					commentController.add);
+router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)',	sessionController.loginRequired,	commentController.publish);
 
 
 

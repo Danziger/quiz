@@ -16,9 +16,21 @@
 	<h4>COMENTARIOS</h4>
 
 	<ul class="nolist comments">
-		{% for comment in question.Comments %}
-			<li>{{ comment.text }}</li>
-		{% endfor %}
+		{% if session.user %}
+			{% for comment in question.Comments %}
+				<li>{{ comment.text }}
+				{% if !comment.published %}<a href="/quizes/{{question.id}}/comments/{{comment.id}}">PUBLICAR</a>{% endif %}
+				</li>
+			{% endfor %}
+		{% else %}
+			{% for comment in question.Comments %}
+				{% if comment.published %}
+					<li>{{ comment.text }}</li>
+				{% else %}
+					<li>Comentario pendiente de ser verificado.</li>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
 	</ul>
 </div>
 

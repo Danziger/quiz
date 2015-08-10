@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				notEmpty: {msg: "El comentario no puede estar vacío."}
 			}
+		},
+		published: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false
 		}
 	});
 }

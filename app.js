@@ -42,8 +42,7 @@ app.use(session());
 
 // Dinamyc helpers:
 app.use(function(req, res, next) {
-	
-	console.log("USE");
+
 	console.log(req.path);
 	
 	// Save current path in session.redir to redirect user to it after login/logout:

@@ -27,3 +27,35 @@ exports.add = function(req, res) {
 		}
 	});
 };
+
+exports.load = function(req, res, next, commentId) {
+
+	console.log("AAAAAA");
+
+	models.Comment.find({
+		where: {id: Number(commentId)}
+	}).then(function(comment){
+		if(comment) {
+			req.comment = comment;
+			next();
+		}
+		else {
+			next(new Error("No existe commentId = " + commentId));
+		}
+	}).catch(function(error){
+		next(error);
+	});
+
+};
+
+// GET -> PUT /quizes/:quizId(\\d+)/comments/:commentId(\\d+)
+exports.publish = function(req, res) {
+
+	req.comment.published = true;
+	
+	req.comment.save({fields: ["published"]}).then(function(){
+		res.redirect("/quizes/" + req.params.quizId);
+	}).catch(function(error){
+		next(error);
+	});
+};
