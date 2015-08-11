@@ -53,4 +53,6 @@ Question.hasMany(Comment);
 exports.Question = Question;
 exports.Comment = Comment;
 
+exports.sequelize = sequelize;
+
 // TO-DO: USE perfect reponse! Sustituir por ella cuando acertamos aproximado!
