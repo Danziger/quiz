@@ -232,9 +232,9 @@ exports.statistics = function(req, res, next) {
 			statistics: {
 				totalQuestions: totalQuestions,
 				questionsWithComments: questionsWithComments,
-				questionsWithoutComments: totalQuestions - questionsWithComments
+				questionsWithoutComments: totalQuestions - questionsWithComments,
 				totalComments: totalComments,
-				commentPerQuestion: (totalComments/totalQuestions).toFixed(2),
+				commentPerQuestion: (totalComments/totalQuestions).toFixed(2)
 			}
 		});
 
