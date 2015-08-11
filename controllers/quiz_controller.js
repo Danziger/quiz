@@ -217,7 +217,7 @@ exports.statistics = function(req, res, next) {
 	Sequelize.Promise.all([
 		models.Question.count(),
 		models.Comment.count(),
-		models.sequelize.query('select count(*) as "count" from (select distinct "QuestionId" from "Comments")', { type: Sequelize.QueryTypes.SELECT})
+		models.sequelize.query('select count(*) as count from (select distinct "QuestionId" from "Comments")', { type: Sequelize.QueryTypes.SELECT})
 	]).then(function(results) {
 		var totalQuestions			= results[0];
 		var totalComments			= results[1];
