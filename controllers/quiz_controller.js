@@ -225,14 +225,16 @@ exports.statistics = function(req, res, next) {
 		var totalComments = results[1];
 		var questionsWithComments = results[2];
 		
+		console.log(questionsWithComments);
+		
 		res.render('quizes/statistics', {
 			title: 'Quiz',
 			statistics: {
 				totalQuestions: totalQuestions,
-				totalComments: totalComments,
-				commentPerQuestion: (totalComments/totalQuestions).toFixed(2),
 				questionsWithComments: questionsWithComments,
 				questionsWithoutComments: totalQuestions - questionsWithComments
+				totalComments: totalComments,
+				commentPerQuestion: (totalComments/totalQuestions).toFixed(2),
 			}
 		});
 
