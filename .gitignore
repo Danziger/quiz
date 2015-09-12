@@ -50,3 +50,6 @@ node_modules
 
 # env
 .env
+
+# npm
+npm-debug.log
